@@ -1,23 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git init *)",
-      "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git push *)",
-      "Bash(git remote *)",
-      "Bash(git branch *)",
-      "Bash(git rm *)",
-      "Bash(npm run dev)",
-      "Bash(npm run build)",
-      "Bash(npm run lint)",
-      "Bash(npm install)",
-      "PowerShell(New-Item *)",
-      "PowerShell(Get-ChildItem *)",
-      "PowerShell(Get-Content *)",
-      "PowerShell(Get-Item *)",
-      "PowerShell(Invoke-WebRequest *)",
-      "PowerShell(git *)"
+      "Bash(*)",
+      "PowerShell(*)"
     ],
     "deny": []
   }
