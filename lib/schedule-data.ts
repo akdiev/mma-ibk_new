@@ -69,7 +69,7 @@ export const coaches = [
     id: 1,
     name: 'Ermin Hodzic',
     nameValue: 'ermin',
-    image: '/coaches/ermin.png',
+    image: '/coaches/ermin.jpg',
     discipline: 'MMA / BJJ',
     bio_de: 'Vorstandsmitglied und Headcoach des MMA-IBK. BJJ Purple Belt mit jahrelanger Wettkampferfahrung im MMA.',
     bio_en: 'Board member and head coach of MMA-IBK. BJJ Purple Belt with years of competitive MMA experience.',
