@@ -19,7 +19,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>('de')
 
   return (
-    <LangContext.Provider value={{ lang, setLang, t: translations[lang] }}>
+    <LangContext.Provider value={{ lang, setLang, t: translations[lang] as typeof translations['de'] }}>
       {children}
     </LangContext.Provider>
   )
