@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-bebas: 'Bebas Neue';
+    --font-inter: 'Inter';
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-dark text-white;
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  ::selection {
+    background: rgba(220, 50, 20, 0.4);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #dc3214;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .section-eyebrow {
+    @apply text-brand-red text-xs font-medium tracking-[5px] uppercase mb-3;
+  }
+
+  .section-heading {
+    font-family: var(--font-bebas), 'Arial Black', sans-serif;
+    @apply text-4xl md:text-5xl tracking-wider text-white mb-8 md:mb-10;
+  }
+
+  .btn-primary {
+    @apply bg-brand-red text-white text-xs font-semibold tracking-[2px] uppercase
+           px-6 py-3 md:px-8 md:py-4 rounded-[2px] transition-all duration-200
+           hover:bg-[#bf2a0f] hover:-translate-y-px active:scale-[0.98]
+           border-none cursor-pointer;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-white text-xs font-semibold tracking-[2px] uppercase
+           px-6 py-3 md:px-8 md:py-4 rounded-[2px] border border-white/30 transition-all duration-200
+           hover:border-brand-red hover:text-brand-red hover:-translate-y-px
+           cursor-pointer;
+  }
+}
+
+/* Hex pattern background */
+.hex-pattern {
+  background-image:
+    repeating-linear-gradient(
+      60deg,
+      rgba(220, 50, 20, 0.04) 0px, transparent 1px, transparent 28px, rgba(220, 50, 20, 0.04) 29px
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      rgba(220, 50, 20, 0.04) 0px, transparent 1px, transparent 28px, rgba(220, 50, 20, 0.04) 29px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(220, 50, 20, 0.04) 0px, transparent 1px, transparent 28px, rgba(220, 50, 20, 0.04) 29px
+    );
+}
+
+/* Card wire texture */
+.wire-texture {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
