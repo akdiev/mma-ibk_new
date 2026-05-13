@@ -10,6 +10,9 @@ out/
 .env.local
 .env.*.local
 
+# admin data (events, content overrides)
+data/*.json
+
 # misc
 .DS_Store
 *.pem

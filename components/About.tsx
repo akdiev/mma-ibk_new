@@ -1,9 +1,21 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useLang } from './LangContext'
+import type { SiteContent } from '@/app/api/admin/content/route'
 
 export default function About() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
+  const [override, setOverride] = useState<SiteContent | null>(null)
+
+  useEffect(() => {
+    fetch('/api/content')
+      .then(r => r.json())
+      .then(setOverride)
+      .catch(() => {})
+  }, [])
+
+  const about = override?.about[lang as 'de' | 'en']
 
   return (
     <section id="about" className="py-16 md:py-28 bg-brand-dark wire-texture">
@@ -11,10 +23,10 @@ export default function About() {
         {/* Left: text */}
         <div>
           <p className="section-eyebrow">{t.about.eyebrow}</p>
-          <h2 className="section-heading">{t.about.heading}</h2>
-          <p className="text-white/60 leading-relaxed mb-5 text-[15px]">{t.about.p1}</p>
-          <p className="text-white/60 leading-relaxed mb-5 text-[15px]">{t.about.p2}</p>
-          <p className="text-white/60 leading-relaxed mb-10 text-[15px]">{t.about.p3}</p>
+          <h2 className="section-heading">{about?.heading ?? t.about.heading}</h2>
+          <p className="text-white/60 leading-relaxed mb-5 text-[15px]">{about?.p1 ?? t.about.p1}</p>
+          <p className="text-white/60 leading-relaxed mb-5 text-[15px]">{about?.p2 ?? t.about.p2}</p>
+          <p className="text-white/60 leading-relaxed mb-10 text-[15px]">{about?.p3 ?? t.about.p3}</p>
           <a
             href="https://wa.me/+436644613887"
             target="_blank"

@@ -1,10 +1,19 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useLang } from './LangContext'
-import { newsItems } from '@/lib/schedule-data'
+import type { EventItem } from '@/app/api/admin/events/route'
 
 export default function News() {
   const { t, lang } = useLang()
+  const [items, setItems] = useState<EventItem[]>([])
+
+  useEffect(() => {
+    fetch('/api/events')
+      .then(r => r.json())
+      .then(d => setItems(Array.isArray(d) ? d : []))
+      .catch(() => {})
+  }, [])
 
   return (
     <section id="news" className="py-24 bg-brand-dark">
@@ -13,18 +22,16 @@ export default function News() {
         <h2 className="section-heading">{t.news.heading}</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {newsItems.map(item => (
+          {items.map(item => (
             <a
               key={item.id}
-              href={item.link}
+              href={item.link || '#'}
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-brand-card border border-white/[0.07] rounded-[3px] overflow-hidden
                          hover:border-brand-red/40 transition-all duration-300 block"
             >
-              {/* Top bar */}
               <div className="h-1 bg-brand-red" />
-
               <div className="p-8">
                 <div className="flex items-start justify-between gap-4 mb-6">
                   <span className="text-brand-red text-[9px] tracking-[3px] uppercase font-medium border border-brand-red/30 px-2 py-1 rounded-[2px]">
@@ -35,15 +42,16 @@ export default function News() {
                   </span>
                 </div>
 
-                {/* Logo */}
-                <div className="mb-5 h-12 flex items-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={item.logo}
-                    alt={item.title_de}
-                    className="h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
-                  />
-                </div>
+                {item.logo && (
+                  <div className="mb-5 h-12 flex items-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={item.logo}
+                      alt={item.title_de}
+                      className="h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                    />
+                  </div>
+                )}
 
                 <h3 className="font-bebas text-2xl tracking-wider text-white mb-3 group-hover:text-brand-red transition-colors">
                   {lang === 'de' ? item.title_de : item.title_en}
@@ -61,7 +69,6 @@ export default function News() {
           ))}
         </div>
 
-        {/* Instagram CTA */}
         <div className="mt-10 text-center">
           <a
             href="https://www.instagram.com/mma_ibk/"
